@@ -1,20 +1,30 @@
 import { useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+
+import ProductList from "./components/ProductList/ProductList";
+import Form from "./components/Form/Form";
+import Header from "./components/Header/Header";
+
+import { useTelegram } from "./hooks/useTelegram";
+
 import "./App.css";
-const tg = window.Telegram.WebApp;
 
 function App() {
+  const { tg, onToggleButton, onClose } = useTelegram();
+
   useEffect(() => {
     tg.ready();
+
     // сообщает что приложение проинициализировано
   }, []);
 
-  const onClose = () => {
-    tg.close();
-  };
-
   return (
     <div className="App">
-      <button onClick={onClose}>Закрыть</button>
+      <Header />
+      <Routes>
+        <Route index element={<ProductList />} />
+        <Route path={"form"} element={<Form />} />
+      </Routes>
     </div>
   );
 }
