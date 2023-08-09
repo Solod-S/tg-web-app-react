@@ -1,7 +1,6 @@
 const tg = window.Telegram.WebApp;
 
 export function useTelegram() {
-  
   const onClose = () => {
     tg.close();
   };
@@ -19,5 +18,7 @@ export function useTelegram() {
     tg,
     user: tg.initDataUnsafe?.user,
     /* данные о пользователи с опшнл чейнинг оператором */
+    queryId: tg.initDataUnsafe?.query_id,
+    // отправка сообщений от имени пользовтеля обратно боту
   };
 }
