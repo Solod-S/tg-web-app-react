@@ -10,12 +10,13 @@ import { useTelegram } from "./hooks/useTelegram";
 import "./App.css";
 
 function App() {
-  const { tg, onToggleButton, onClose } = useTelegram();
+  const { tg } = useTelegram();
 
   useEffect(() => {
     tg.ready();
 
     // сообщает что приложение проинициализировано
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

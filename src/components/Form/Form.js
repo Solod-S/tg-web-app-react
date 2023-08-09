@@ -3,7 +3,7 @@ import "./Form.css";
 import { useTelegram } from "../../hooks/useTelegram";
 
 function Form() {
-  const { user, onClose, tg } = useTelegram();
+  const { tg } = useTelegram();
 
   const [country, setCountry] = useState("");
   const [street, setStreet] = useState("");
@@ -16,6 +16,7 @@ function Form() {
       subject,
     };
     tg.sendData(JSON.stringify(data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [country, street, subject]);
 
   useEffect(() => {
@@ -24,11 +25,13 @@ function Form() {
     return () => {
       tg.offEvent("mainButtonClicked", onSendData);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onSendData]);
 
   useEffect(() => {
     tg.MainButton.setParams({ text: "Отправить данные" });
     // меняем параметры нижней книпки
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -37,6 +40,7 @@ function Form() {
     } else {
       tg.MainButton.show();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [country, street]);
 
   const onChangeCountry = (e) => {

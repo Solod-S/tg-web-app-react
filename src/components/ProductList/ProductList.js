@@ -78,6 +78,7 @@ function ProductList() {
       },
       body: JSON.stringify(data),
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [addedItems]);
 
   useEffect(() => {
@@ -85,6 +86,7 @@ function ProductList() {
     return () => {
       tg.offEvent("mainButtonClicked", onSendData);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onSendData]);
 
   const onAdd = (product) => {
